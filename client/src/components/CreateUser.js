@@ -14,15 +14,17 @@ export default function CreateUser(props) {
          try{
          const res = await Axios.get(`/api/groups`)
              const id = res.data.filter(group => group.name ===`${code}`)
-             console.log(id[0].id)
              setGroupId(id[0].id)
+             const hardCodedGroupId = id[0].id
+             //why cant we use groupId from state in create user here??
+             createUser(hardCodedGroupId)
          } catch(err){console.log(err)}
     }
 
-    const createUser = () => {
-        Axios.post(`/api/groups/${groupId}/users`, {username: username})
+    const createUser = (group_id) => {
+        console.log('create user called')
+        Axios.post(`/api/groups/${group_id}/users`, {username: username})
         .then(res => {
-            console.log(res)
             setSwipe(!swipe)
         })
         .catch(err => console.log(err))
@@ -30,9 +32,8 @@ export default function CreateUser(props) {
 
     async function handleSubmit(e){
         e.preventDefault()
-        await getGroupId().then(
-        createUser()
-        )
+        await getGroupId()
+        
     }
 
     return (
