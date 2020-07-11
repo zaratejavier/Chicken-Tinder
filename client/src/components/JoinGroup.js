@@ -58,8 +58,8 @@ export default function JoinGroup() {
                 </input>
                 <br />
                 <br />
-                <button type="Submit">join
-                    {/* <Link to='/Swipe'>Start Swiping!</Link> */}
+                <button type="Submit">
+                    <Link to='/Swipe'>Start Swiping!</Link>
                 </button>
             </form>
         </div>
