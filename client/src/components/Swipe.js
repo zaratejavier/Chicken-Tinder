@@ -15,7 +15,7 @@ export default function Swipe() {
         .catch( (err) => {
             console.log(err)
         })
-    } 
+    }; 
         
     const renderRestaurants = () => {
         return restaurants.map(restaurant => (
@@ -23,9 +23,12 @@ export default function Swipe() {
             <h1>{restaurant.name} </h1>
             <h1>{restaurant.cuisine}</h1>
             <h1>{restaurant.image}</h1>
+            <h1>{restaurant.menu_items}</h1>
             </>
         ))
-    }
+    };
+
+    
 
     return (
         <div>

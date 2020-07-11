@@ -36,6 +36,7 @@ export default function JoinGroup() {
         .catch( (err) => {
             console.log(err)
         })
+        setUser([groupObj, ...users]);
     }
 
     return (
