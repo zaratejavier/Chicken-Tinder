@@ -7,6 +7,7 @@ export default function CreateUser(props) {
     const [username, setUsername] = useState('')
 
     const handleSubmit = () => {
+        e.preventDefault()
         Axios.post(`/api/groups/:group_id/users`)
         .then(res => {
             console.log(res)
