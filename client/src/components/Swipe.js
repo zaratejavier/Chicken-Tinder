@@ -1,48 +1,34 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Axios from 'axios'
+import up from './img/up.png'
+import down from './img/down.png'
 
 export default function Swipe() {
     const [restaurants, setRestaurants] = useState([])
+    const [currentRestaurant, setCurrentRestaurant] = useState('')
 
-    useEffect(() => {getRestaurant()}, [], );
-
-    const getRestaurant = () => {
-        Axios.get(`/api/restaurants`)
-            .then((res) => {
-            // setRestaurants(res.data)
-            console.log(res.data)
-             } )
-        .catch( (err) => {
-            console.log(err)
+    useEffect(()=> {
+        Axios.get('api/restaurants')
+        .then(res => {
+            setRestaurants(res.data)
+            setCurrentRestaurant(res.data[0])
         })
-    }; 
-        
-    const renderRestaurants = () => {
-        return restaurants.map(restaurant => (
-            <>
-            <h1>{restaurant.name} </h1>
-            <h1>{restaurant.cuisine}</h1>
-            <h1>{restaurant.image}</h1>
-            <h1>{restaurant.menu_items}</h1>
-            </>
-        ))
-    };
+        .catch(err=> console.log(err))
+    }, [])
 
-   const likeRestaurant = () => {
-    Axios.get(`/api/liked_restaurants`)
-       .then((res) => {
-        // setRestaurants(res.data)
-        console.log(res.data)
-         } )
-        .catch( (err) => {
-            console.log(err)
-        })
-   }
 
     return (
-        <div>
-            Swipe
-            {renderRestaurants()}
+        <div style={{display:'flex', alignItems:'center', justifyContent:'center'}}>
+            <div style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', border:'3px solid black', borderRadius:'30px'}}>
+                <h1 style={{margin:'40px'}}>{currentRestaurant.name}</h1>
+                <img src={currentRestaurant.image} style={{margin:'40px'}}/>
+                <h3 style={{margin:'40px'}}>Cuisine: {currentRestaurant.cuisine}</h3>
+                <div style={{display:'flex', margin:'40px'}}>
+                    <img src={down}/>
+                        <button>View Menu</button>
+                    <img src={up}/>
+                </div>
+            </div>
         </div>
     )
 }

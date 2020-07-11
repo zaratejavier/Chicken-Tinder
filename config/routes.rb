@@ -7,6 +7,10 @@ Rails.application.routes.draw do
   end
 
   namespace :api do 
+    resources :restaurants
+  end 
+
+  namespace :api do 
     resources :groups do
       resources :users
     end
