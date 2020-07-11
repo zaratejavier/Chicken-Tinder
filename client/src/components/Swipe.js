@@ -28,7 +28,16 @@ export default function Swipe() {
         ))
     };
 
-    
+   const likeRestaurant = () => {
+    Axios.get(`/api/liked_restaurants`)
+       .then((res) => {
+        // setRestaurants(res.data)
+        console.log(res.data)
+         } )
+        .catch( (err) => {
+            console.log(err)
+        })
+   }
 
     return (
         <div>
