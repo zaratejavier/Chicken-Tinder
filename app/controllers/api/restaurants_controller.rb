@@ -2,7 +2,7 @@ class Api::RestaurantsController < ApplicationController
   before_action :set_restaurant, only: [:show, :destroy]
 
   def index 
-    render json: restaurant.all
+    render json: Restaurant.all
   end 
 
   def show
