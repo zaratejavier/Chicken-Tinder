@@ -18,6 +18,10 @@ class Api::GroupsController < ApplicationController
     render json: @group.destroy
   end
 
+  def get_group_id(name)
+    Group.find_by_name(name)
+  end
+
   private
   
   def set_group
