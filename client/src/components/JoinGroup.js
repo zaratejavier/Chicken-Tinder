@@ -13,7 +13,7 @@ export default function JoinGroup() {
     }
 
     const addUser = (groupCode) => {
-        
+        Axios.get()
     }
 
     return (
