@@ -1,11 +1,12 @@
 import React from 'react';
 import './App.css';
-import { Switch } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import Home from './components/Home';
 import JoinGroup from './components/JoinGroup';
 import CreateGroup from './components/CreateGroup';
 import Swipe from './components/Swipe';
 import Match from './components/Match';
+import NoMatch from './components/NoMatch';
 
 function App() {
   return (
