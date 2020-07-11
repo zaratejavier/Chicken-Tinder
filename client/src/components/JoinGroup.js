@@ -6,21 +6,27 @@ export default function JoinGroup() {
     const [user, setUser] = useState("");
     const [groupCode, setGroupCode] = useState("");
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        Axios.post()
-
+        // Axios.post(`/api/groups`)
+        Axios.get(`/api/getgroup/${groupCode}`)
+        .then( (res) => (
+            console.log(res.data)
+        ) )
     }
 
-    const addUser = (groupCode) => {
-        Axios.get()
+    const addUser = () => {
+        Axios.get(`/api/getgroup/${groupCode}`)
+        .then( (res) => (
+            console.log(res.data)
+        ) )
     }
 
     return (
         <div>
             Join Group
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={() => handleSubmit()}>
                 <label>Input your username: </label>
                     <input 
                         value={user} 
@@ -35,8 +41,8 @@ export default function JoinGroup() {
                 </input>
                 <br />
                 <br />
-                <button>
-                    <Link to='/Swipe'>Start Swiping!</Link>
+                <button type="Submit">add
+                    {/* <Link to='/Swipe'>Start Swiping!</Link> */}
                 </button>
             </form>
         </div>
