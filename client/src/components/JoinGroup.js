@@ -3,16 +3,14 @@ import { Link } from 'react-router-dom'
 import Axios from "axios"
 
 export default function JoinGroup() {
-    const [user, setUser] = useState("username");
-    const [groupCode, setGroupCode] = useState("Group Test 3");
+    const [user, setUser] = useState("");
+    const [groupCode, setGroupCode] = useState("");
     const [groupId, setGroupId] = useState("")
 
     const handleSubmit = (e) => {
         e.preventDefault();
         // Axios.post(`/api/groups`)
         getGroupId();
-        addUser();
-
     }
 
     const getGroupId = () => {
@@ -22,21 +20,23 @@ export default function JoinGroup() {
                 group.name === `${groupCode}`
                 );
             setGroupId(groupObj[0].id)
+            addUser(groupObj[0].id);
         })
         .catch ( (err) => {
             console.log(err)
         })
     }
 
-    const addUser = () => {
-        Axios.post(`api/groups/${groupId}/users`)
+    const addUser = (groupId) => {
+        Axios.post(`api/groups/${groupId}/users`, {username: user})
         .then( (res) => {
             console.log(res.data)
          } )
         .catch( (err) => {
             console.log(err)
         })
-        setUser([groupObj, ...users]);
+        
+        // setUser([groupObj, ...users]);
     }
 
     return (
