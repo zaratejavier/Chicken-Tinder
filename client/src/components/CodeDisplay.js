@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function CodeDisplay() {
+export default function CodeDisplay(props) {
     return (
-        <div>
-            <h1>Your Code is: {}</h1>
+        <div style={{backgroundColor:'#E9692C', textAlign:'center'}}>
+            <h1>Your Code is: {props.code}</h1>
         </div>
     )
 }

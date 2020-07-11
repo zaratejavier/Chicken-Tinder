@@ -10,7 +10,7 @@ class Api::GroupsController < ApplicationController
     if group.save
       render json: group
     else
-      render json: groups.errors, status: 422
+      render json: {errors: groups.errors, status: 422}
     end
   end
 

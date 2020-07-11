@@ -10,7 +10,9 @@ class Api::UsersController < ApplicationController
   end
 
   def create
-    user = User.new(user_params)
+    @group = Group.find(params[:group_id])
+    user = @group.users.new(user_params)
+    # user = User.new(user_params)
 
     if user.save
       render json: user
