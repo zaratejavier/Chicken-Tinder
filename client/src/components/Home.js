@@ -26,7 +26,7 @@ export default function Home(props) {
     }
 
     return (
-        <div>
+        <div style={{display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center'}}>
             Home
             <button onClick={() => createAGroup()}>Create a Group</button>
             {addingUser && <Redirect to={{

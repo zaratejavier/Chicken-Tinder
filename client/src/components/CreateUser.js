@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState, useEffect, } from 'react'
 import CodeDisplay from './CodeDisplay'
 import Axios from 'axios'
 import { Redirect } from 'react-router-dom'
@@ -16,10 +16,12 @@ export default function CreateUser(props) {
              const id = res.data.filter(group => group.name ===`${code}`)
              setGroupId(id[0].id)
              const hardCodedGroupId = id[0].id
-             //why cant we use groupId from state in create user here??
-             createUser(hardCodedGroupId)
+            // why cant we use groupId from state in create user here??
          } catch(err){console.log(err)}
     }
+    useEffect(() => {
+        getGroupId()
+    },[])
 
     const createUser = (group_id) => {
         console.log('create user called')
@@ -32,8 +34,7 @@ export default function CreateUser(props) {
 
     async function handleSubmit(e){
         e.preventDefault()
-        await getGroupId()
-        
+        createUser(groupId)
     }
 
     return (
@@ -51,6 +52,7 @@ export default function CreateUser(props) {
                 state: { 
                     code: code,
                     username: username,
+                    groupId: groupId,
                  }
             }}/>}
         </div>
